@@ -26,7 +26,8 @@
 		// indexedDB
 	});
 
-	const addTask = async () => {
+	const addTask = async (event) => {
+		event.preventDefault()
 		if (inputValue === '') return;
 		todoList = [{ title: inputValue, completed: false }, ...todoList];
 		inputValue = '';
@@ -61,10 +62,10 @@
 		{/if}
 	</main>
 	<footer id="footer">
-		<div id="footerWrapper">
+		<form id="footerWrapper" on:submit={addTask}>
 			<TaskInput bind:value={inputValue} placeholder="Task"></TaskInput>
 			<AddButton onClick={addTask}></AddButton>
-		</div>
+		</form>
 	</footer>
 </div>
 
@@ -97,7 +98,7 @@
 		padding: 20px;
 		background-color: #eee;
 		overflow: scroll;
-		padding-bottom: 65px;
+		padding-bottom: 70px;
 	}
 	#footer {
 		position: fixed;
